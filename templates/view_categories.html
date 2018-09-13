@@ -1,0 +1,126 @@
+{%extends 'base.html' %}
+{% block main-content %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">List of Categories</h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- seminar area -->
+        <div class="properties-area recent-seminar" style="background-color: #FFF;">
+            <div class="container">  
+                <div class="row">
+                     
+                <div class="col-md-3 p0 padding-top-40">
+                    <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">ADS</h3>
+                            </div>
+                            <div class="panel-body search-widget">
+                                <!-- EDW EVGALA TO SEARCH -->
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">ADS</h3>
+                            </div>
+                            <div class="panel-body recent-seminar-widget">
+                                          <!-- EDW EVGALA TO SEARCH -->    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9  pr0 padding-top-40 properties-page">
+                    <div class="col-md-12 clear"> 
+                        <div class="col-xs-10 page-subheader sorting pl0">
+                            <ul class="sort-by-list">
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="seminar_date" data-order="ASC">
+                                        Ascend <i class="fa fa-sort-amount-asc"></i>					
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="seminar_price" data-order="DESC">
+                                        Descend <i class="fa fa-sort-numeric-desc"></i>						
+                                    </a>
+                                </li>
+                            </ul><!--/ .sort-by-list-->
+
+
+                        </div>
+
+                        <div class="col-xs-2 layout-switcher">
+                            <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
+                            <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>                          
+                        </div><!--/ .layout-switcher-->
+                    </div>
+
+                    <div class="col-md-12 clear"> 
+                        <div id="list-type" class="seminar-th">
+                                {% for c in categorylist %}
+                                <div class="col-sm-6 col-md-4 p0">
+                                    <div class="box-two seminar-item">
+                                        <div class="item-thumb">
+                                            <a href="/category/{{ c.id }}" ><img src="{{c.categoryimage_thumbnail.url}}"></a>
+                                        </div>
+
+                                        <div class="item-entry ">
+                                            <h5><a href="/category/{{ c.id }}"> {{ c.name|truncatechars:20 }} </a></h5>
+                                            <div class="dot-hr"></div>
+                                            <span class="pull-left"><b> Seminars inside :</b> {{c.seminarcounter}}  </span>
+                                            <p style="display: none;"> Perigrafi kathe katigorias!</p>
+                                        </div> 
+                                    </div>
+                                </div> 
+                                {% endfor %}
+                           
+                            </div>
+                     </div>
+                    
+
+                     
+
+                    <div class="col-md-12"> 
+                        <div class="pull-right">
+                            <div class="pagination">
+                {% if categorylist.has_other_pages %}
+                                 <ul class="pagination">
+                        {% if users.has_previous %}
+                                     <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                                     <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in categorylist.paginator.page_range %}
+                              {% if cateogrylist.number == i %}
+                                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                              {% else %}
+                                     <li><a href="?page={{ i }}">{{ i }}</a></li>
+                              {% endif %}
+                        {% endfor %}
+                        {% if categorylist.has_next %}
+                                     <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                                     <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                      </ul>
+                 {% endif %}
+                                   
+                                </ul>
+                            </div>
+                        </div>                
+                    </div>
+                </div>  
+                </div>              
+            </div>
+        </div>
+
+{% endblock %}

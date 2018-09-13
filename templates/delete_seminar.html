@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+
+
+
+
+
+
+
+
+
+{% block main-content %}
+
+				<div class="container" style="padding-top: 110px ;padding-bottom: 100px;">
+
+						<div class="row">
+							<div class="col-md-5 col-md-offset-4"> 
+							    <h1>Delete seminar</h1>
+							       <form method="post">{% csrf_token %}
+							        <p>Are you sure you want to delete {{ seminar.title }}"?</p>
+							       	  <input class="btn btn-link" type="button" value="Cancel"  onclick="window.history.go(-1);"/>
+							              <input class="btn btn-danger" type="submit" value="submit"/>          
+							        </form>
+						</div>
+					</div>
+				</div>
+
+			{% endblock %}

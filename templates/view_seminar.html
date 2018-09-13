@@ -1,0 +1,287 @@
+{%extends 'base.html' %}
+{% block main-content %}
+{% load staticfiles %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">{{seminar.title}} </h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- seminar area -->
+        <div class="content-area single-seminar" style="background-color: #FFF;">&nbsp;
+            <div class="container">   
+
+                <div class="clearfix padding-top-40" >
+                    <div class="col-md-12 single-seminar-content">
+                        <div class="row">
+                            <div class="light-slide-item full-width-sld">            
+                                <div class="clearfix">
+                                    <div class="favorite-and-print">
+                                        <a class="add-to-fav" href="#login-modal" data-toggle="modal">
+                                            <i class="fa fa-star-o"></i>
+                                        </a>
+                                        <a class="printer-icon " href="javascript:window.print()">
+                                            <i class="fa fa-print"></i> 
+                                        </a>
+                                    </div> 
+                                    <!-- SLIDER 
+                                   <ul id="fullWidth-gallery" class="gallery list-unstyled cS-hidden">
+                                        <li data-thumb="assets/img/seminar-1/seminar1.jpg"> 
+                                            <img src="assets/img/seminar-1/seminar1.jpg" />
+                                        </li>
+                                        <li data-thumb="assets/img/seminar-1/seminar2.jpg"> 
+                                            <img src="assets/img/seminar-1/seminar3.jpg" />
+                                        </li>
+                                        <li data-thumb="assets/img/seminar-1/seminar3.jpg"> 
+                                            <img src="assets/img/seminar-1/seminar3.jpg" />
+                                        </li>
+                                        <li data-thumb="assets/img/seminar-1/seminar4.jpg"> 
+                                            <img src="assets/img/seminar-1/seminar4.jpg" />
+                                        </li>                                         
+                                    </ul>
+                                    END OF SLIDER-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8" style="background-color: rgb(251, 251, 251);">
+                        <div class="">
+
+                            <div class="single-seminar-wrapper">
+
+                                <div class="section">
+                                    <h4 class="s-seminar-title">Description</h4>
+                                    <div class="s-seminar-content">
+                                        <p> {{ seminar.description}}                            </p>
+                                    </div>
+                                </div>
+                                <!-- End description area  -->
+
+                                <div class="section additional-details">
+
+                                    <h4 class="s-seminar-title">Information</h4>
+
+                                    <ul class="additional-details-list clearfix">
+                                        <li>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Location</span>
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{seminar.location}}</span>
+                                        </li>
+
+                                        <li>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Posted</span>
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{seminar.pub_date}}</span>
+                                        </li>
+                                        <li>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Category</span>
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{seminar.category}}</span>
+                                        </li>
+
+                                        <li>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Users Registered</span>
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{seminar.user_counter}}</span>
+                                        </li>
+
+                                        <li>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Max Users</span>
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{seminar.users_max}}</span>
+                                        </li>
+
+                                        <li>
+                                            <form  method="post" action="/seminar/{{seminar.id}}/register/" >{% csrf_token %}
+                                                <button id="usercounter" name="{{seminar.id}}" class="btn btn-primary" type="submit">
+                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                BookSeminar
+                                                </button>
+                                        </form>
+                                        </li> 
+
+                                    </ul>
+                                </div>  
+                                <!-- End additional-details area  -->
+
+                                <div class="section seminar-video"> 
+                                    <h4 class="s-seminar-title">Video</h4> 
+                                    <div class="video-thumb">
+                                        <a class="video-popup" href="yout" title="Virtual Tour">
+                                            <img src="{% static 'assets/img/seminar-video.jpg' %}" class="img-responsive wp-post-image" alt="Exterior">            
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- End video area  -->
+
+                                <div class="section seminar-share"> 
+                                    <h4 class="s-seminar-title">Share width your friends </h4> 
+                                    <div class="roperty-social">
+                                        <ul> 
+                                            <li><a title="Share this on dribbble " href="#"><img src="{% static 'assets/img/social_big/dribbble_grey.png' %}"></a></li>                                         
+                                            <li><a title="Share this on facebok " href="#"><img src="{% static 'assets/img/social_big/facebook_grey.png' %}"></a></li> 
+                                            <li><a title="Share this on delicious " href="#"><img src="{% static 'assets/img/social_big/delicious_grey.png' %}"></a></li> 
+                                            <li><a title="Share this on tumblr " href="#"><img src="{% static 'assets/img/social_big/tumblr_grey.png' %}"></a></li> 
+                                            <li><a title="Share this on digg " href="#"><img src="{% static 'assets/img/social_big/digg_grey.png' %}"></a></li> 
+                                            <li><a title="Share this on twitter " href="#"><img src="{% static 'assets/img/social_big/twitter_grey.png' %}"></a></li> 
+                                            <li><a title="Share this on linkedin " href="#"><img src="{% static 'assets/img/social_big/linkedin_grey.png' %}"></a></li>                                        
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- End video area  -->
+                            </div>
+                        </div>
+
+                        <div class="similar-post-section padding-top-40"> 
+                            <div id="prop-smlr-slide_0"> 
+                                <div class="box-two seminar-item">
+                                    <div class="item-thumb">
+                                        <a href="seminar-1.html" ><img src="assets/img/similar/seminar-1.jpg"></a>
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="seminar-1.html"> Seminar </a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Fees :</b> </span>
+                                        <span class="proerty-price pull-right"> 30$</span> 
+                                    </div>
+                                </div> 
+                                <div class="box-two seminar-item">
+                                    <div class="item-thumb">
+                                        <a href="seminar-1.html" ><img src="assets/img/similar/seminar-2.jpg"></a>
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="seminar-1.html"> Seminar </a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Fees :</b>  </span>
+                                        <span class="proerty-price pull-right"> 50$</span> 
+                                    </div>
+                                </div> 
+                                <div class="box-two seminar-item">
+                                    <div class="item-thumb">
+                                        <a href="seminar-1.html" ><img src="assets/img/similar/seminar-3.jpg"></a>
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="seminar-1.html"> Seminar </a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Fees :</b>  </span>
+                                        <span class="proerty-price pull-right"> 20$</span> 
+                                    </div>
+                                </div> 
+                                <div class="box-two seminar-item">
+                                    <div class="item-thumb">
+                                        <a href="seminar-1.html" ><img src="assets/img/similar/seminar-1.jpg"></a>
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="seminar-1.html">Seminar </a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Fees :</b>  </span>
+                                        <span class="proerty-price pull-right"> 25$</span> 
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 p0">
+                        <aside class="sidebar sidebar-seminar blog-asside-right seminar-style2">
+                            <div class="dealer-widget">
+                                <div class="dealer-content">
+                                    <div class="inner-wrapper">
+                                        <div class="single-seminar-header">                                          
+                                            <h1 class="seminar-title">{{ seminar.title}}</h1>
+                                           <!-- <span class="seminar-price">fees 20$</span> -->
+                                        </div>
+
+
+                                        <div class="dealer-section-space">
+                                            <span>Affiliate user</span>
+                                        </div>
+                                        <div class="clear">
+                                            <div class="col-xs-4 col-sm-4 dealer-face">
+                                                <a href="">
+                                                    <img src="{{ user1.profile.avatar_thumbnail.url }}" class="img-circle">
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 ">
+                                                <h3 class="dealer-name">
+                                                    <a href="">{{user1.first_name}}</a>
+                                                    <span>{{user1.last_name}}</span>        
+                                                </h3>
+                                                <div class="dealer-social-media">
+                                                    <a class="twitter" target="_blank" href="">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                    <a class="facebook" target="_blank" href="">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                    <a class="gplus" target="_blank" href="">
+                                                        <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                    <a class="linkedin" target="_blank" href="">
+                                                        <i class="fa fa-linkedin"></i>
+                                                    </a> 
+                                                    <a class="instagram" target="_blank" href="">
+                                                        <i class="fa fa-instagram"></i>
+                                                    </a>       
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="clear">
+                                            <ul class="dealer-contacts">                                       
+                                                <li><i class="pe-7s-map-marker strong"> </i> address</li>
+                                                <li><i class="pe-7s-mail strong"> </i> {{user1.email}}</li>
+                                                <li><i class="pe-7s-call strong"> </i> +00000000</li>
+                                            </ul>
+                                            <span> BIO </span>
+                                            <p>{{profile.bio}}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Ads </h3>
+                                </div>
+                                <div class="panel-body recent-seminar-widget">
+                                    <img src="{% static 'assets/img/ads.jpg' %}">
+                                </div>
+                            </div> 
+
+                        </aside>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        
+
+        <script type="text/javascript" src="assets/js/lightslider.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('#image-gallery').lightSlider({
+                    gallery: true,
+                    item: 1,
+                    thumbItem: 9,
+                    slideMargin: 0,
+                    speed: 500,
+                    auto: true,
+                    loop: true,
+                    onSliderLoad: function () {
+                        $('#image-gallery').removeClass('cS-hidden');
+                    }
+                });
+            });
+        </script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load staticfiles %}
+       
+        <nav class="navbar navbar-default ">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="{% static 'assets/img/yasminelogo.jpg' %}" alt=""></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse yamm" id="navigation">
+                    <div class="button navbar-right">
+                   
+                        {% if request.user.is_authenticated %}
+                         <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.location.href='{% url 'auth_logout' %}'" data-wow-delay="0.45s">Logout {{request.user }} ?</button>
+                        {% else%}
+                        <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.location.href='{% url 'auth_login' %}'" data-wow-delay="0.45s">Login</button>
+                        <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.location.href='{% url 'registration_register' %}'" data-wow-delay="0.5s">Register</button>
+                        {% endif %}
+                    </div>
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="dropdown  " data-wow-delay="0.1s">
+                            <a href="{% url 'home' %}" class="active">Home</b></a>
+                        </li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="{% url 'search' %}">Find seminars</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="{% url 'categories' %}">Categories</a></li>
+
+
+                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="contact.html">Contact</a></li>
+                        
+                        {% if request.user.is_authenticated %}
+                            {% if  user.profile.affiliate %}
+                            <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="{% url 'affiliateprofile' user.username %}">My affiliate account</a></li>
+                            {% else %}
+                            <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="{% url 'userprofile' user.username %}">My account</a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- End of nav bar -->

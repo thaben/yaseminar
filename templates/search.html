@@ -1,0 +1,115 @@
+{%extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main-content %}
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">Find your seminars today</h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+<div class="content-area  recent-seminar">
+        <!-- seminar area -->
+        <div class="properties-area recent-seminar" style="background-color: #FFF;">
+            <div class="container">  
+                <div class="row">
+                     
+                <div class="col-md-3 p0 padding-top-40">
+                    <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Smart search</h3>
+                            </div>
+                            <div class="panel-body search-widget">
+                                <form action="" class=" form-inline"> 
+                                   
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Recommended</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9  pr0 padding-top-40 properties-page">
+                    <div class="col-md-12 clear"> 
+                        <div class="col-xs-10 page-subheader sorting pl0">
+                            <ul class="sort-by-list">
+                                <li class="">
+                                    <p>SEARCH HERE</p>					
+                                    </a>
+                                </li>
+                            </ul><!--/ .sort-by-list-->
+
+
+   
+
+
+
+                    <div class="col-md-12 clear" > 
+                         <div class="well">
+                          <form method="GET" >
+                            {{ filter.form.as_p }}
+                            <button type="submit" class="btn btn-primary">Search</button>
+                          </form>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Location</th>
+                                    <th>Created</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+        
+                                  {% for seminar in filter.qs %}
+                                    <tr>
+                                      <td>{{ seminar.title }}</td>
+                                      <td>{{ seminar.category }}</td>
+                                      <td>{{ seminar.location }}</td>
+                                      <td>{{ seminar.pub_date }}</td>
+                                    </tr>
+                                  {% empty %}
+                                    <tr>
+                                      <td colspan="5">No data</td>
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12"> 
+                        <div class="pull-right">
+                            <div class="pagination">
+                                <ul>
+                                    <li><a href="#">Prev</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>                
+                    </div>
+                </div>  
+                </div>              
+            </div>
+        </div>
+</div>
+</div>
+</div>  
+{% endblock %}

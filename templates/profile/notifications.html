@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block main-content %}
+{% load staticfiles%}
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">Hello : <span class="orange strong"> {{ request.user.username }} </span></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header --> 
+
+        <!-- seminar area -->
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                        <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="{{ user.profile.avatar_thumbnail.url }}" class="img-responsive" alt="">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        {{ user.first_name}} {{ user.last_name}} 
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Birth date : {{ user.profile.birth_date}}
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Inbox</button>
+                    <button type="button" class="btn btn-danger btn-sm">Send Message</button>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="{% url 'userprofile' user.username %}">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Overview </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'editinfo' user.id   %}"> 
+                            <i class="glyphicon glyphicon-user"></i>
+                            Edit Profile </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'userprofile' user.username   %}"> 
+                            <i class="glyphicon glyphicon-ok"></i>
+                            notifications </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Help </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                <div class="section"> 
+                            <div id="list-type" class="seminar-th-list">
+                                 {% for n in notifications %}
+                                <div class="col-md-4 p0">
+                                    <div class="box-two seminar-item">
+                                       
+
+                                        <div class="item-entry overflow">
+                                            <h5><a href="{% url 'seminardetails' n.s_name.id %}">  {{n.s_name}}</a></h5>
+                                            <p style="display: none;">     {{n.message|truncatechars:139}}   </p>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>    
+                                        {% endfor %}    
+
+         
+
+                            </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>  
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>
+</div>
+
+</div>
+{%endblock%}

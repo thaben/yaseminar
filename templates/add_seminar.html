@@ -1,0 +1,31 @@
+{%extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+
+
+{% block main-content %}
+
+	{% if user.profile.affiliate %}
+    
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Add a new seminar</h1>
+      <hr/>
+      <div class="well">
+    <form method="POST" class="post-form">
+    	{% csrf_token %}
+    	{% crispy form form.helper  %}     
+        
+        <button type="submit" class="save btn btn-primary">Save</button>
+    
+    </form>
+
+      </div>
+    </div>
+  </div>
+
+    {% endif %}
+
+{% endblock %}

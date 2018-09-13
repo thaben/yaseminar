@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block main-content %}
+<p class='lead'>{% trans "Your account is now activated." %}</p>
+
+<script>
+  var time = 5;
+  setInterval(function() {
+    if(time > 0) {
+      document.getElementById("timecounter").innerHTML = "You will be redirected in "
+      + time + " seconds. If not then ";
+      time--;
+    } else {
+      location.href="/accounts/add-information"
+    }
+
+  },1000)
+  
+</script>
+
+
+
+<p id="timecounter">Redirect</p>
+
+<button onclick="function()">Try it</button>	
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block main-content %}
+
+
+
+<style type="text/css">
+
+.form-login-max-width {
+width: 80%;
+max-width: 500px;
+min-width: 100px;
+}
+
+</style>
+
+
+
+<div class='row'>
+<div class='col-md-4 col-md-offset-4 text-align-center'>
+<h1>Login</h1>
+<form method="post" action="." class="form-login-max-width">
+  {% csrf_token %}
+  {{ form|crispy }}
+
+  <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Submit' %}" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+</div>
+
+</div>
+<hr/>
+<div class='row'>
+<div class='col-sm-4 col-sm-offset-4 text-align-center'>
+<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!&emsp;
+{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+</div>
+</div>
+
+{% endblock %}

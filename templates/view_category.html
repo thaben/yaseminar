@@ -1,0 +1,138 @@
+{%extends 'base.html' %}
+{% block main-content %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">List Layout With Sidebar</h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- seminar area -->
+        <div class="properties-area recent-seminar" style="background-color: #FFF;">
+            <div class="container">  
+                <div class="row">
+                     
+                <div class="col-md-3 p0 padding-top-40">
+                    <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Smart search</h3>
+                            </div>
+                            <div class="panel-body search-widget">
+                                <!-- -->
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Recommended</h3>
+                            </div>
+                            <div class="panel-body recent-seminar-widget">
+                                       <!-- -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9  pr0 padding-top-40 properties-page">
+                    <div class="col-md-12 clear"> 
+                        <div class="col-xs-10 page-subheader sorting pl0">
+                            <ul class="sort-by-list">
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="seminar_date" data-order="ASC">
+                                        seminar Date <i class="fa fa-sort-amount-asc"></i>					
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="seminar_price" data-order="DESC">
+                                        seminar Price <i class="fa fa-sort-numeric-desc"></i>						
+                                    </a>
+                                </li>
+                            </ul><!--/ .sort-by-list-->
+
+                            <div class="items-per-page">
+                                <label for="items_per_page"><b>seminar per page :</b></label>
+                                <div class="sel">
+                                    <select id="items_per_page" name="per_page">
+                                        <option value="3">3</option>
+                                        <option value="6">6</option>
+                                        <option value="9">9</option>
+                                        <option selected="selected" value="12">12</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                        <option value="60">60</option>
+                                    </select>
+                                </div><!--/ .sel-->
+                            </div><!--/ .items-per-page-->
+                        </div>
+
+                        <div class="col-xs-2 layout-switcher">
+                            <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>                          
+                        </div><!--/ .layout-switcher-->
+                    </div>
+
+                    <div class="col-md-12 clear"> 
+                        <div id="list-type" class="seminar-th">
+                            {% for s in seminarlist %}
+                            <div class="col-sm-6 col-md-4 p0">
+                                    <div class="box-two seminar-item">
+                                        <div class="item-thumb">
+                                            <a href="/seminar/{{ s.id }}" ><img src="assets/img/demo/seminar-3.jpg"></a>
+                                        </div>
+
+                                        <div class="item-entry overflow">
+                                            <h5><a href="seminar-1.html"> {{ s.title }} </a></h5>
+                                            <div class="dot-hr"></div>
+                                            <span class="pull-left"><b> Max users :</b> {{ s.users_max }} </span>
+                                            <span class="proerty-price pull-right">Fees: $ 300,000</span>
+                                            <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
+                                        </div>
+
+
+                                    </div>
+                                </div> 
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12"> 
+                        <div class="pull-right">
+    
+                        {% if seminarlist.has_other_pages %}
+                             <ul class="pagination">
+                        {% if users.has_previous %}
+                                     <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                                     <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in seminarlist.paginator.page_range %}
+                              {% if seminarlist.number == i %}
+                                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                              {% else %}
+                                     <li><a href="?page={{ i }}">{{ i }}</a></li>
+                              {% endif %}
+                        {% endfor %}
+                        {% if seminarlist.has_next %}
+                                     <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                                     <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                      </ul>
+                 {% endif %}
+                            </ul>
+                            </div>
+                        </div>                
+                    </div>
+                </div>  
+                </div>              
+            </div>
+        </div>
+
+{% endblock %}

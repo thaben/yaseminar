@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+        
+{% block slider-search %}
+ <div class="slider-area">
+            <div class="slider">
+                <div id="bg-slider" class="owl-carousel owl-theme">
+
+                    <div class="item"><img src="{% static 'assets/img/slide1/slider-image-1.jpg' %}" alt="search seminar"></div>
+                    <div class="item"><img src="{% static 'assets/img/slide1/slider-image-2.jpg' %}" alt="find seminar"></div>
+                    <div class="item"><img src="{% static 'assets/img/slide1/slider-image-1.jpg' %}" alt="search seminar"></div>
+
+                </div>
+            </div>
+            <div class="slider-content">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                        <h2>Find your seminar today !</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
+                        <div class="search-form wow pulse" data-wow-delay="0.8s">
+
+                            <form action="" class=" form-inline">
+
+                                <div class="form-group">
+                                    <input id="search" name="title" type="text" class="form-control" placeholder="Search Live"> 
+
+                                </div>
+                                    <button class="btn search-btn" type="submit"  formaction="{% url 'search' %}"><i class="fa fa-search"></i></button>
+               
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block main-content %}
+{% load staticfiles %}
+
+        <!-- main categories area -->
+        <div class="content-area home-area-1 recent-seminar" style="background-color: #FCFCFC; padding-bottom: 55px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                        <!-- /.feature title -->
+                        <h2>Top Categories</h2>
+                        <p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies . </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="seminar-th">
+                        {% for c in categories %}
+                        <div class="col-sm-6 col-md-3 p0">
+                            <div class="box-two seminar-item">
+                                <div class="item-thumb">
+                                    <a href="{% url 'category' c.id %}" ><img src="{{c.categoryimage_thumbnail.url}}"></a>
+                                </div>
+                                <div class="item-entry overflow">
+                                    <h5><a href="{% url 'category' c.id %}" > {{c.name|truncatechars:21}} </a></h5>
+                                    <div class="dot-hr"></div>
+                                    <span class="pull-left"><b>Seminars :</b> {{c.seminarcounter}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="col-sm-6 col-md-3 p0">
+                            <div class="box-tree more-proerty text-center">
+                                <div class="item-tree-icon">
+                                    <i class="fa fa-th"></i>
+                                </div>
+                                <div class="more-entry overflow">
+                                    <h5><a href="{% url 'categories' %}" >CAN'T DECIDE ? </a></h5>
+                                    <h5 class="tree-sub-ttl">Show all categories</a></h5>
+                                  <a href="{% url 'categories' %}">  <button class="btn border-btn more-black" value="All properties" >All categories</button></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+        
+        
