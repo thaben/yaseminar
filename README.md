@@ -1,2 +1,2 @@
 # yaseminar
- Seminar managemen tWeb app built with django a python web-framework
+ Seminar management Web app built with django a python web-framework
